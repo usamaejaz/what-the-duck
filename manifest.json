@@ -16,8 +16,7 @@
   "permissions": [
     "tabs",
     "storage",
-    "http://*/*",
-    "https://*/*"
+    "*://*/*"
   ],
   "options_ui": {
     "page": "options.html"
@@ -25,14 +24,12 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "*://*/*"
       ],
       "js": [
         "scripts/contentscript.js"
       ],
-      "run_at": "document_end",
-      "all_frames": false
+      "run_at": "document_end"
     }
   ],
   "browser_action": {
@@ -40,7 +37,7 @@
       "19": "icons/icon-19.png",
       "38": "icons/icon-38.png"
     },
-    "default_title": "Extension Boilerplate",
+    "default_title": "__MSG_appName__",
     "default_popup": "popup.html"
   }
 }
