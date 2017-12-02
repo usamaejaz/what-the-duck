@@ -4,7 +4,6 @@
 A simple browser extension which replaces the F word with "duck".  
 
 ## Features
-What the duck? Do you really ducking need a feature list for this ducking simple extension? Ducking fine!
 - Replaces the F word with "duck" 
 - Allows you to exclude specific sites
 - Shows the count of ducks in browser toolbar
@@ -13,7 +12,7 @@ What the duck? Do you really ducking need a feature list for this ducking simple
 - Chrome
 - Firefox
 - Opera
-- *any ducking browser which supports WebExtensions API*
+- *any browser which supports WebExtensions API*
 
 ## Install
 - Chrome: *n/a*
