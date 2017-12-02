@@ -15,7 +15,7 @@ A simple browser extension which replaces the F word with "duck".
 - *any browser which supports WebExtensions API*
 
 ## Install
-- [Chrome Webstore](https://chrome.google.com/webstore/detail/what-the-duck/akcgddilpnbanfbhndpkfcfaemahiacg)
+- Chrome: [Chrome Webstore](https://chrome.google.com/webstore/detail/what-the-duck/akcgddilpnbanfbhndpkfcfaemahiacg)
 - Firefox: *n/a*
 - Opera: *n/a*
 
