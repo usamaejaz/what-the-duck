@@ -1,63 +1,66 @@
 import ext from "./utils/ext";
 import storage from "./utils/storage";
 
-var popup = document.getElementById("app");
-storage.get('color', function(resp) {
-  var color = resp.color;
-  if(color) {
-    popup.style.backgroundColor = color
-  }
+let displayContainer = document.getElementById("display-container");
+
+let template = (data, isExcluded) => {
+    return (`
+        <h3 class="title">${data}</h3>
+        <div class="action-container">
+            <button data-hostname="${data}" id="toggle-exclude-btn" class="btn btn-primary">${isExcluded ? "Enable" : "Disable"}</button>
+        </div>
+    `);
+};
+let renderMessage = (message) => {
+    displayContainer.innerHTML = `<p class='message'>${message}</p>`;
+};
+
+let renderButton = (data, isExcluded) => {
+    if (data) {
+        displayContainer.innerHTML = template(data, isExcluded);
+    } else {
+        renderMessage("Sorry, could not extract this page's URL")
+    }
+};
+
+ext.tabs.query({active: true, currentWindow: true}, function (tabs) {
+    let activeTab = tabs[0];
+    let _a = document.createElement("a");
+    _a.href = activeTab.url;
+
+    storage.get("exclude", (resp) => {
+
+        resp.exclude = resp.exclude || "";
+
+        let excludedHosts = resp.exclude.split("\n");
+        excludedHosts = excludedHosts.map((line) => {
+            return line.trim();
+        });
+
+        renderButton(_a.hostname || "", excludedHosts.indexOf(_a.hostname) > -1);
+
+    });
 });
 
-var template = (data) => {
-  var json = JSON.stringify(data);
-  return (`
-  <div class="site-description">
-    <h3 class="title">${data.title}</h3>
-    <p class="description">${data.description}</p>
-    <a href="${data.url}" target="_blank" class="url">${data.url}</a>
-  </div>
-  <div class="action-container">
-    <button data-bookmark='${json}' id="save-btn" class="btn btn-primary">Save</button>
-  </div>
-  `);
-}
-var renderMessage = (message) => {
-  var displayContainer = document.getElementById("display-container");
-  displayContainer.innerHTML = `<p class='message'>${message}</p>`;
-}
-
-var renderBookmark = (data) => {
-  var displayContainer = document.getElementById("display-container")
-  if(data) {
-    var tmpl = template(data);
-    displayContainer.innerHTML = tmpl;  
-  } else {
-    renderMessage("Sorry, could not extract this page's title and URL")
-  }
-}
-
-ext.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  var activeTab = tabs[0];
-  chrome.tabs.sendMessage(activeTab.id, { action: 'process-page' }, renderBookmark);
+document.addEventListener("click", function (e) {
+    if (e.target && e.target.matches("#toggle-exclude-btn")) {
+        e.preventDefault();
+        let data = e.target.getAttribute("data-hostname");
+        ext.runtime.sendMessage({action: "toggle-exclude", data: data}, (res) => {
+            if (res && res.success) {
+                renderMessage("Refresh the page for the changes to take effect.");
+                setTimeout(() => {
+                    renderButton(data, res.isExcluded);
+                }, 3000);
+            } else {
+                renderMessage("Sorry, there was an error while saving.");
+            }
+        })
+    }
 });
 
-popup.addEventListener("click", function(e) {
-  if(e.target && e.target.matches("#save-btn")) {
+let optionsLink = document.querySelector(".js-options");
+optionsLink.addEventListener("click", function (e) {
     e.preventDefault();
-    var data = e.target.getAttribute("data-bookmark");
-    ext.runtime.sendMessage({ action: "perform-save", data: data }, function(response) {
-      if(response && response.action === "saved") {
-        renderMessage("Your bookmark was saved successfully!");
-      } else {
-        renderMessage("Sorry, there was an error while saving your bookmark.");
-      }
-    })
-  }
+    ext.tabs.create({'url': ext.extension.getURL('options.html')});
 });
-
-var optionsLink = document.querySelector(".js-options");
-optionsLink.addEventListener("click", function(e) {
-  e.preventDefault();
-  ext.tabs.create({'url': ext.extension.getURL('options.html')});
-})

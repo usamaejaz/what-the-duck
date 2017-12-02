@@ -1,30 +1,32 @@
-import ext from "./utils/ext";
 import storage from "./utils/storage";
 
-var colorSelectors = document.querySelectorAll(".js-radio");
+let excludeTextArea = document.getElementById("exclude");
 
-var setColor = (color) => {
-  document.body.style.backgroundColor = color;
-};
+let saveTimer;
 
-storage.get('color', function(resp) {
-  var color = resp.color;
-  var option;
-  if(color) {
-    option = document.querySelector(`.js-radio.${color}`);
-    setColor(color);
-  } else {
-    option = colorSelectors[0]
-  }
+storage.get("exclude", (resp) => {
 
-  option.setAttribute("checked", "checked");
-});
+    resp.exclude = resp.exclude || "";
 
-colorSelectors.forEach(function(el) {
-  el.addEventListener("click", function(e) {
-    var value = this.value;
-    storage.set({ color: value }, function() {
-      setColor(value);
+    excludeTextArea.value = resp.exclude;
+
+    excludeTextArea.focus();
+
+    excludeTextArea.addEventListener("input", function () {
+        if (saveTimer) {
+            clearTimeout(saveTimer);
+        }
+        saveTimer = setTimeout(() => {
+
+            storage.set({
+                exclude: excludeTextArea.value.trim().split("\n").filter((line) => {
+                    return line.trim() !== "";
+                }).join("\n")
+            });
+
+            saveTimer = null;
+
+        }, 200);
     });
-  })
-})
+
+});

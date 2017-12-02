@@ -1,17 +1,17 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <link href="styles/options.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Options & Settings</title>
+  <meta charset="utf-8" />
+  <link href="styles/options.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Options - What The Duck</title>
 </head>
 <body class="wrap">
   <div class="grid">
     <div class="unit whole center-on-mobiles">
       <div class="heading">
-        <h1>Extension Boilerplate</h1>
-        <p class="lead">A foundation for creating cross-browser extensions</p>  
+        <h1>What The Duck</h1>
+        <p class="lead">A simple browser extension that replaces the F word with Duck</p>
       </div>
     </div>
   </div>
@@ -20,18 +20,12 @@
     <div class="grid">
       <div class="unit whole center-on-mobiles">
         <div class="option">
-          <h5>Popup color</h5>  
-          <div class="radio-group">
-            <label><input class="js-radio white" type="radio" name="radio" value="white">White</label>
-            <label><input class="js-radio beige" type="radio" name="radio" value="beige">Beige</label>
-            <label><input class="js-radio lavender" type="radio" name="radio" value="lavender">Lavender</label>
+          <h5>Exclude sites</h5>
+          <div class="input-group">
+              <div class="whole text-muted"><small>One per line</small></div>
+              <textarea class="whole" style="min-height: 200px;" id="exclude" placeholder="www.domain.com"></textarea>
           </div>
         </div>
-        
-        <div class="option">
-          <em class="text-muted">...display your extensions' options here...</em>
-        </div>
-
       </div>
     </div>  
   </section>
@@ -41,7 +35,7 @@
     <div class="grid">
       <div class="unit whole center-on-mobiles">
         <p class="text-center text-muted">
-          &copy; Extension Boilerplate
+            by <a href="http://usamaejaz.com">Usama Ejaz</a>
         </p>
       </div>
     </div>

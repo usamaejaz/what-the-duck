@@ -7,6 +7,7 @@ A simple browser extension which replaces the F word with "duck".
 What the duck? Do you really ducking need a feature list for this ducking simple extension? Ducking fine!
 - Replaces the F word with "duck" 
 - Allows you to exclude specific sites
+- Shows the count of ducks in browser toolbar
 
 ## Browser support
 - Chrome
@@ -15,14 +16,14 @@ What the duck? Do you really ducking need a feature list for this ducking simple
 - *any ducking browser which supports WebExtensions API*
 
 ## Install
-- Chrome: link here
-- Firefox: link here
-- Opera: link here
+- Chrome: *n/a*
+- Firefox: *n/a*
+- Opera: *n/a*
 
-Alternately, if you want to duck with the extension directly, here are the download links. After you download it, unzip the file and load it in your browser using the steps mentioned below.
- - [**Download Chrome Extension**](https://github.com/EmailThis/extension-boilerplate/releases/download/v1.0/chrome.zip)
- - [**Download Opera Extension**](https://github.com/EmailThis/extension-boilerplate/releases/download/v1.0/opera.zip)
- - [**Download Firefox Extension**](https://github.com/EmailThis/extension-boilerplate/releases/download/v1.0/firefox.zip)
+Alternately, if you want to install the extension directly, here are the download links. After downloading it, unzip the file and load it in your browser using the steps mentioned below.
+ - [**Download Chrome Extension**](https://github.com/usamaejaz/what-the-duck/releases/download/v1.0/chrome.zip)
+ - [**Download Opera Extension**](https://github.com/usamaejaz/what-the-duck/releases/download/v1.0/opera.zip)
+ - [**Download Firefox Extension**](https://github.com/usamaejaz/what-the-duck/releases/download/v1.0/firefox.zip)
 
 
 ##### Load the extension in Chrome & Opera
