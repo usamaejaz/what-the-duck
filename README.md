@@ -16,8 +16,8 @@ A simple browser extension which replaces the F word with "duck".
 
 ## Install
 - Chrome: [Chrome Webstore](https://chrome.google.com/webstore/detail/what-the-duck/akcgddilpnbanfbhndpkfcfaemahiacg)
-- Firefox: *n/a*
-- Opera: *n/a*
+- Firefox: [Mozilla Add-ons](https://addons.mozilla.org/en-US/developers/addon/what-the-duck)
+- Opera: [Opera Add-ons](https://addons.opera.com/en/extensions/details/what-the-duck/)
 
 Alternately, if you want to install the extension directly, here are the download links. After downloading it, unzip the file and load it in your browser using the steps mentioned below.
  - [**Download Chrome Extension**](https://github.com/usamaejaz/what-the-duck/releases/download/v1.0/chrome.zip)
